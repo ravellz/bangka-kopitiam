@@ -1,11 +1,11 @@
 document.addEventListener("alpine:init", () => {
   Alpine.data("products", () => ({
     items: [
-      { id: 1, name: "Robusta Brazil", img: "1.png", price: 20000 },
-      { id: 2, name: "Arabica Blend", img: "2.png", price: 25000 },
-      { id: 3, name: "Primo Passo", img: "3.png", price: 30000 },
-      { id: 4, name: "Aceh Gayo", img: "4.png", price: 35000 },
-      { id: 5, name: "Sumatra Mandheling", img: "5.png", price: 40000 },
+      { id: 1, name: "Robusta Brazil", img: "1.png", price: 120000 },
+      { id: 2, name: "Arabica Blend", img: "2.png", price: 125000 },
+      { id: 3, name: "Primo Passo", img: "3.png", price: 130000 },
+      { id: 4, name: "Aceh Gayo", img: "4.png", price: 135000 },
+      { id: 5, name: "Sumatra Mandheling", img: "5.png", price: 140000 },
     ],
   }));
 
@@ -67,6 +67,51 @@ document.addEventListener("alpine:init", () => {
     },
   });
 });
+
+// Form Validation
+const checkoutButton = document.querySelector(".checkout-button");
+checkoutButton.disabled = true;
+
+const form = document.querySelector("#checkoutForm");
+
+form.addEventListener("keyup", function () {
+  for (let i = 0; i < form.elements.length; i++) {
+    if (form.elements[i].value.length !== 0) {
+      // checkoutButton.classList.remove("disabled");
+      checkoutButton.classList.add("disabled");
+    } else {
+      return false;
+    }
+  }
+  checkoutButton.disabled = false;
+  checkoutButton.classList.remove("disabled");
+});
+
+// Kirim data ketika tombol checkout diklik
+checkoutButton.addEventListener("click", function (e) {
+  e.preventDefault();
+  const formData = new FormData(form);
+  const data = new URLSearchParams(formData);
+  const objData = Object.fromEntries(data);
+  const message = formatMessage(objData);
+  // window.open("https://shopee.co.id/godaisejiwa_snackkhasbangka");
+  window.open("http://wa.me/6282175912712?text=" + encodeURIComponent(message));
+});
+
+// Format pesan whatsapp
+const formatMessage = (obj) => {
+  return `Data Customer
+    Nama: ${obj.name}
+    Email: ${obj.email}
+    No HP: ${obj.phone}
+  Data Pesanan
+    ${JSON.parse(obj.items).map(
+      (item) => `${item.name} (${item.quantity} x ${rupiah(item.total)}) \n`
+    )}
+  TOTAL: ${rupiah(obj.total)}
+  Terimakasih.
+  `;
+};
 
 // Konversi ke rupiah
 const rupiah = (number) => {

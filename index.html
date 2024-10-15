@@ -26,7 +26,7 @@
     ></script>
 
     <!-- App -->
-    <script src="src/app.js"></script>
+    <script src="src/app.js" async></script>
   </head>
 
   <body>
@@ -88,6 +88,12 @@
 
         <div class="form-container" x-show="$store.cart.items.length">
           <form action="" id="checkoutForm">
+            <input
+              type="hidden"
+              name="items"
+              x-model="JSON.stringify($store.cart.items)"
+            />
+            <input type="hidden" name="total" x-model="$store.cart.total" />
             <h5>Customer Detail</h5>
 
             <label for="name">
@@ -104,7 +110,7 @@
             </label>
 
             <button
-              class="checkout-button"
+              class="checkout-button disabled"
               type="submit"
               id="checkout-button"
               value="button"
@@ -124,10 +130,7 @@
       <div class="mask-container">
         <main class="content">
           <h1>Mari Nikmati Secangkir <span>Kopi</span></h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore,
-            repudiandae.
-          </p>
+          <q>Secangkir Kopi, Awal yang Sempurna!</q>
         </main>
       </div>
     </section>
@@ -144,13 +147,13 @@
         <div class="content">
           <h3>Kenapa memilih kopi kami?</h3>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam,
-            esse.
+            Pilih kopi kami karena kami hanya menggunakan biji kopi pilihan yang
+            diproses dengan teknik terbaik untuk menjaga keaslian rasa.
           </p>
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora,
-            suscipit odit cumque atque explicabo ea eius adipisci laboriosam
-            placeat laborum!
+            Setiap cangkir dibuat dengan penuh dedikasi untuk memberikan
+            pengalaman kopi yang istimewa. Kualitas, rasa, dan kesegaran selalu
+            menjadi prioritas kami.
           </p>
         </div>
       </div>
@@ -161,8 +164,9 @@
     <section id="menu" class="menu">
       <h2><span>Menu </span>Kami</h2>
       <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae
-        illo expedita inventore esse ea obcaecati?
+        Menu kami menawarkan beragam pilihan kopi yang diseduh dengan biji
+        berkualitas premium, mulai dari espresso yang kuat hingga latte yang
+        creamy.
       </p>
       <div class="row">
         <div class="menu-card">
@@ -171,29 +175,29 @@
           <p class="menu-card-price">IDR 15k</p>
         </div>
         <div class="menu-card">
-          <img src="img/Espresso.jpg" alt="Espresso" />
-          <h3 class="menu-card-title">- Espresso -</h3>
-          <p class="menu-card-price">IDR 15k</p>
+          <img src="img/Long Black.jpg" alt="Long Black" />
+          <h3 class="menu-card-title">- Long Black -</h3>
+          <p class="menu-card-price">IDR 23k</p>
         </div>
         <div class="menu-card">
-          <img src="img/Espresso.jpg" alt="Espresso" />
-          <h3 class="menu-card-title">- Espresso -</h3>
-          <p class="menu-card-price">IDR 15k</p>
+          <img src="img/Caramel Macchiato.jpg" alt="Caramel Macchiato" />
+          <h3 class="menu-card-title">- Caramel Macchiato -</h3>
+          <p class="menu-card-price">IDR 28k</p>
         </div>
         <div class="menu-card">
-          <img src="img/Espresso.jpg" alt="Espresso" />
-          <h3 class="menu-card-title">- Espresso -</h3>
-          <p class="menu-card-price">IDR 15k</p>
+          <img src="img/Cappuccino.jpg" alt="Cappuccino" />
+          <h3 class="menu-card-title">- Cappuccino -</h3>
+          <p class="menu-card-price">IDR 32k</p>
         </div>
         <div class="menu-card">
-          <img src="img/Espresso.jpg" alt="Espresso" />
-          <h3 class="menu-card-title">- Espresso -</h3>
-          <p class="menu-card-price">IDR 15k</p>
+          <img src="img/Latte.jpg" alt="Latte" />
+          <h3 class="menu-card-title">- Latte -</h3>
+          <p class="menu-card-price">IDR 35k</p>
         </div>
         <div class="menu-card">
-          <img src="img/Espresso.jpg" alt="Espresso" />
-          <h3 class="menu-card-title">- Espresso -</h3>
-          <p class="menu-card-price">IDR 15k</p>
+          <img src="img/Cold Brew.jpg" alt="Cold Brew" />
+          <h3 class="menu-card-title">- Cold Brew -</h3>
+          <p class="menu-card-price">IDR 23k</p>
         </div>
       </div>
     </section>
@@ -203,8 +207,10 @@
     <section class="products" id="products" x-data="products">
       <h2><span>Produk Unggulan</span> Kami</h2>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-        repudiandae veniam praesentium dolore maxime quos.
+        Biji kopi unggulan kami dipilih dari perkebunan terbaik, menghasilkan
+        aroma kaya dan cita rasa seimbang. Cocok untuk berbagai metode seduhan,
+        biji kopi ini menawarkan rasa halus dengan aftertaste yang memikat.
+        Nikmati kelezatan autentik di setiap cangkir.
       </p>
 
       <div class="row">
